@@ -1,3 +1,4 @@
+
 public class ListaEstatica {
 
     int tamanho;
@@ -5,12 +6,12 @@ public class ListaEstatica {
 
     public ListaEstatica() {
 
-        info = new int[0];
+        info = new int[10];
         tamanho = 0;
 
     }
 
-    public void redimensionar() {
+    private void redimensionar() {
         int[] novo;
         int novoTamanho = info.length+10;
 
@@ -35,7 +36,7 @@ public class ListaEstatica {
     public void exibir(){
 
         for(int i =0; i<tamanho; i++){
-            System.out.println("Posição "+i+":"+info[i]);
+            System.out.println(info[i]);
         }
     }
 
@@ -60,12 +61,16 @@ public class ListaEstatica {
     }
 
     public void liberar(){
+    	info = new int [10];
+    	tamanho = 0;
+    	/*
         int[] novo;
         int novoTamanho = 0;
 
         novo = new int[novoTamanho];
 
         info = novo;
+        */
 
     }
 
@@ -79,12 +84,15 @@ public class ListaEstatica {
     }
 
     public boolean estaVazia(){
+    	return tamanho ==0;
+    	/*
         if(info.length == 0){
             return true;
         }
         else{
             return false;
         }
+        */
     }
 
     public int getTamanho(){
