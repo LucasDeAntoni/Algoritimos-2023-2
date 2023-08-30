@@ -13,6 +13,7 @@ public class ListaDupla<T> {
         novo.setInfo(valor);
         novo.setProx(getPrimeiro());
         novo.setAnterior(null);
+        
         if (getPrimeiro() != null) {
             getPrimeiro().setAnterior(novo);
         }
@@ -93,9 +94,10 @@ public class ListaDupla<T> {
                 str = str + p.getInfo().toString();
                 p = p.getProx();
             }
-
+            else {
             str = str + ", " + p.getInfo().toString();
             p = p.getProx();
+            }
         }
         return str;
     }
@@ -115,6 +117,10 @@ public class ListaDupla<T> {
         // System.out.println(lista.getPrimeiro().getInfo());
         // lista.liberar();
         System.out.println(lista.toString());
+        lista.retirar(5);
+       // lista.retirar(20);
+        System.out.println(lista.toString());
+        System.out.println(lista.getPrimeiro().getInfo());
 
     }
 
