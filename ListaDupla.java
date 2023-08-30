@@ -1,5 +1,4 @@
 
-
 public class ListaDupla<T> {
 
     private NoListaDupla<T> primeiro;
@@ -22,6 +21,14 @@ public class ListaDupla<T> {
 
     public NoListaDupla<T> getPrimeiro() {
         return primeiro;
+    }
+
+    public NoListaDupla<T> getUltimo(){
+        NoListaDupla<T> p = new NoListaDupla<>();
+        while (p.getProx() != null){
+            p = p.getProx();
+        }
+        return p;
     }
 
     public NoListaDupla<T> buscar(T valor) {
