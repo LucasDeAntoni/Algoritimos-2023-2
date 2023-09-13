@@ -1,6 +1,8 @@
 package pilhas;
 
-public class PilhaVetor<T> implements Pilha {
+import java.lang.reflect.Array;
+
+public class PilhaVetor<T> implements Pilha<T> {
 
 	private int tamanho;
 	private int limite;
@@ -32,16 +34,18 @@ public class PilhaVetor<T> implements Pilha {
 
 	public PilhaVetor(int limite) {
 		super();
+        this.tamanho = 0;
 		this.limite = limite;
+        this.info = (T[]) new Object[limite];
 	}
 
 	@Override
-	public void push(Object valor) {
+	public void push(T valor) {
 		if (getTamanho() == getLimite()) {
 			throw new PilhaCheiaException();
 		}
 
-		info[tamanho] = (T) valor;
+		info[tamanho] = valor;
 		tamanho++;
 	}
 
@@ -66,10 +70,10 @@ public class PilhaVetor<T> implements Pilha {
 
 	@Override
 	public boolean estaVazia() {
-		if (info[tamanho] == null) {
-			return true;
-		} else {
+		if (tamanho != 0) {
 			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -81,14 +85,39 @@ public class PilhaVetor<T> implements Pilha {
 
 	}
 	
-	public String ToString() {
+	public String toString() {
 		
-		String str = "";
-		for(int i =0; i<tamanho; i++) {
-			str += "," + info[i].toString();
+		StringBuilder str = new StringBuilder();
+		for (int i = tamanho-1; i >= 0; i--) {
+			str.append(",").append(info[i]);
 		}
-		return str;
+		return str.toString();
 		
 	}
+
+    public void concatenar(PilhaVetor<T> p){
+        for(int i = 0; i<p.getTamanho(); i++){
+            push(p.info[i]);
+        }
+    }
+
+     public static void main(String[] args) {
+        PilhaVetor<Integer> pilha = new PilhaVetor<>(5);
+		
+        pilha.push(10);
+		pilha.push(20);
+		pilha.push(30);
+
+		PilhaVetor<Integer> p = new PilhaVetor<>(5);
+		p.push(40);
+		p.push(50);
+		//System.out.println(pilha.peek());
+		
+		
+		pilha.concatenar(p);
+		System.out.println(pilha.toString());
+		
+        System.out.println(pilha.estaVazia());
+    }
 
 }
