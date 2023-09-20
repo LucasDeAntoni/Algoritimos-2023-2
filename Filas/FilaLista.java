@@ -1,4 +1,4 @@
-package Fila;
+package fila;
 
 public class FilaLista <T> implements Fila<T> {
     ListaEncadeada lista = new ListaEncadeada<T>();
@@ -22,7 +22,7 @@ public class FilaLista <T> implements Fila<T> {
            if (estaVazia() == true){
             throw new FilaVaziaException();
         }
-        return (T) lista.getUltimo().getInfo();
+        return (T) lista.getPrimeiro().getInfo();
     }
 
     @Override
@@ -35,8 +35,8 @@ public class FilaLista <T> implements Fila<T> {
 
     @Override
     public void liberar() {
-        ListaEncadeada<T> NovaLista = new ListaEncadeada<T>();
-        lista  = NovaLista;
+    	lista = new ListaEncadeada<>();
+       
     }
 
     public String toString(){
