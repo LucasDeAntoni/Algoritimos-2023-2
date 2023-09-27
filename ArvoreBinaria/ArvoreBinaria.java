@@ -37,7 +37,7 @@ public class ArvoreBinaria<T> {
 
     public String ArvorePre(NoArvoreBinaria<T> no) {
         if (no == null) {
-            return "";
+            return "<>";
         }
         String str = "<" + no.getInfo().toString();
 		
