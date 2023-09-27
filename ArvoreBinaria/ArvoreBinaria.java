@@ -65,12 +65,12 @@ public class ArvoreBinaria<T> {
     private int contarNos(NoArvoreBinaria<T> no) {
         int n = 1;
 
-        if (no.getEsq() != null)
+        if (no.getEsq() != null){
             n += contarNos(no.getEsq());
-
-        if (no.getDir() != null)
+	}
+        if (no.getDir() != null){
             n += contarNos(no.getDir());
-
+	}
         return n;
     }
 
