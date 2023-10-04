@@ -31,28 +31,86 @@ public class ArvoreBinaria<T> {
 
     }
 
+    // pre-ordem
     public String toString() {
-        return ArvorePre(raiz);
+        return ArvorePre(raiz);  
     }
 
     public String ArvorePre(NoArvoreBinaria<T> no) {
         if (no == null) {
-            return "<>";
+            return "";
         }
         String str = "<" + no.getInfo().toString();
-		
-		if (no.getEsq() != null)
-			str += "<" + ArvorePre(no.getEsq()) + ">";
-		else
-			str += "<>";
 
-		if (no.getDir() != null)
-			str += "<" + ArvorePre(no.getDir()) + ">";
-		else
-			str += "<>";
-		
-		
-		return str + ">";
+        if (no.getEsq() != null)
+            str += "<" + ArvorePre(no.getEsq()) + ">";
+        else
+            str += "<>";
+
+        if (no.getDir() != null)
+            str += "<" + ArvorePre(no.getDir()) + ">";
+        else
+            str += "<>";
+
+        return str + ">";
+    }
+
+    // simetrica
+    public String emordem() {
+        return emOrdemPrivate(raiz);
+    }
+
+    private String emOrdemPrivate(NoArvoreBinaria<T> no) {
+
+        if (no == null) {
+            return " ";
+        }
+
+        String str = ""; 
+
+        if (no.getEsq() != null) {
+            str += "<" + emOrdemPrivate(no.getEsq()) + ">";
+        } else {
+            str += "<>";
+        }
+
+        str += no.getInfo().toString();
+
+        if (no.getDir() != null) {
+            str += "<" + emOrdemPrivate(no.getDir()) + ">";
+        } else {
+            str += "<>";
+        }
+
+        return str;
+    }
+
+    public String posOrdem() {
+        return posOrdemPrivate(raiz);
+    }
+
+    public String posOrdemPrivate(NoArvoreBinaria<T> no) {
+
+        if (no == null) {
+            return " ";
+        }
+
+        String str = "";
+
+        if (no.getEsq() != null) {
+            str += "<" + posOrdemPrivate(no.getEsq()) + ">";
+        } else {
+            str += "<>";
+        }
+
+        if (no.getDir() != null) {
+            str += "<" + posOrdemPrivate(no.getDir()) + ">";
+        } else {
+            str += "<>";
+        }
+
+        str += no.getInfo().toString();
+        return str;
     }
 
     public int contarNos() {
@@ -65,12 +123,12 @@ public class ArvoreBinaria<T> {
     private int contarNos(NoArvoreBinaria<T> no) {
         int n = 1;
 
-        if (no.getEsq() != null){
+        if (no.getEsq() != null)
             n += contarNos(no.getEsq());
-	}
-        if (no.getDir() != null){
+
+        if (no.getDir() != null)
             n += contarNos(no.getDir());
-	}
+
         return n;
     }
 
@@ -87,7 +145,9 @@ public class ArvoreBinaria<T> {
 
         arvore.setRaiz(no1);
         System.out.println(arvore.estaVazia());
-        System.out.println(arvore.toString());
+        // System.out.println(arvore.toString());
+        System.out.println(arvore.emordem());
         System.out.println(arvore.pertence(1));
+        System.out.println(arvore.posOrdem());
     }
 }
