@@ -1,4 +1,4 @@
-package fila;
+package Fila;
 
 public class FilaVetor <T> implements Fila<T> {
 	private int tamanho;
@@ -40,10 +40,14 @@ public class FilaVetor <T> implements Fila<T> {
 
 	@Override
 	public T retirar() {
-		T valor = info[tamanho];
-		info[inicio] = null;
+		T valor = peek();
+		
+		if(valor!= null){
+		
 		inicio = (inicio+1) % limite;
 		tamanho --;
+		
+	}
 				
 		return valor;
 	}
@@ -57,18 +61,14 @@ public class FilaVetor <T> implements Fila<T> {
 	}
 
     public FilaVetor<T> CriarFilaConcatenada(FilaVetor<T> f2){
-    	int indice = inicio;
         int limite = f2.limite + this.limite;
         FilaVetor<T> f3 = new FilaVetor<T>(limite);
 
         for(int i=0;  i<tamanho;i++){
             f3.inserir(this.info[i]);
-            indice = (indice+1)% limite;
         }
-        indice = f2.inicio;
         for(int i=0;  i<f2.tamanho;i++){
             f3.inserir(f2.info[i]);
-            indice = (indice+1)% limite;
         }
         return f3;
         
@@ -76,18 +76,15 @@ public class FilaVetor <T> implements Fila<T> {
 
     public String toString(){
         String resultado = "";
-        
-        int indice = inicio;
-        for (int i = 0; i <tamanho; i++) {
-        	if(i>0) {
-        		resultado+= ", ";
-        	}
-        	resultado += info[indice].toString();
-        	indice = (indice+1) % limite;
-        }
-        return resultado;
-		
-      
+		int index = inicio;
+		for (int i = 0; i <tamanho; i++) {
+            if(i>0) {
+				resultado += ", " ;
+			}
+			resultado += info[index].toString() ;
+            index = (index+1) % limite;
+		}
+		return resultado;
 	
     }
     public int getLimite(){
@@ -104,14 +101,17 @@ public class FilaVetor <T> implements Fila<T> {
 
         f2.inserir(40);
         f2.inserir(50);
-        f2.inserir(60);
-        System.out.println(f1.toString());
-        System.out.println(f2.toString());
-       System.out.println(f1.CriarFilaConcatenada(f2).toString());
+		System.out.println(f1.peek());
+		System.out.println(f1.retirar());
+		f1.retirar();
+		
+		
+     	System.out.println(f1.toString());
+       //System.out.println(f1.CriarFilaConcatenada(f2).toString());
+   
         
         
-       
-     
+
     }
 
-}   
+}
