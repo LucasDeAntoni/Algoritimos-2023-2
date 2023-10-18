@@ -55,7 +55,7 @@ public class ArvoreBinaria<T> {
         return str + ">";
     }
 
-    // simetrica
+    // simetrica,em ordem
     public String emordem() {
         return emOrdemPrivate(raiz);
     }
@@ -84,7 +84,7 @@ public class ArvoreBinaria<T> {
 
         return str;
     }
-
+    //pos ordem
     public String posOrdem() {
         return posOrdemPrivate(raiz);
     }
