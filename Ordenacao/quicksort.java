@@ -14,7 +14,7 @@ public class quicksort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
     }
 
     private void quickSort(int inico, int fim){
-        if(inico>fim){
+        if(inico<fim){
             int indexPivo = patricionar(inico, fim);
             quickSort(inico, indexPivo-1);
             quickSort(indexPivo+1, fim);
