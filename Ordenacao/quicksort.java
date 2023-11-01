@@ -26,14 +26,18 @@ public class quicksort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
         int b = fim;
         T pivo = info[inicio];
 
-        while(true){
-            while(a<=fim &&info[a].compareTo(pivo)>0){
-                a++;
-            }
-
-            while (b >= inicio && info[b].compareTo(pivo) > 0) {
-                b--;
-            }
+    while(true){
+        	do {
+        		a++;
+        	}
+            while(a<=fim &&info[a].compareTo(pivo)>=0);
+               
+            
+        	do {
+        		b--;
+        	}
+            while (b >= inicio && info[b].compareTo(pivo) > 0);
+           
 
             if(a>=b){
                 break;
