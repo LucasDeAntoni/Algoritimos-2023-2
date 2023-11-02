@@ -1,9 +1,9 @@
-package ordenacao;
+ package ordenacao;
 
-public class quicksort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
+public class Quicksort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
 
     
-    public quicksort(T info[]){
+    public Quicksort(T info[]){
         super(info);
     }
 
@@ -26,27 +26,45 @@ public class quicksort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
         int b = fim;
         T pivo = info[inicio];
 
-    while(true){
-        	do {
-        		a++;
-        	}
-            while(a<=fim &&info[a].compareTo(pivo)>=0);
-               
-            
-        	do {
-        		b--;
-        	}
-            while (b >= inicio && info[b].compareTo(pivo) > 0);
-           
-
-            if(a>=b){
-                break;
+        while(a <= b){
+            while(info[a].compareTo(pivo) < 0){
+                a++;
             }
-
-            trocar(a, b);
+            while(info[b].compareTo(pivo) > 0){
+                b--;
+            }
+            if(a <= b){
+                trocar(a, b);
+                // Atualiza o índice do pivô
+                if(info[a].compareTo(pivo) == 0){
+                    b--;
+                }else{
+                    a++;
+                }
+            }
         }
-        trocar(b, inicio);
+        return a;
+    }
 
-        return b;
+    
+    
+    public static void main(String[] args) {
+		
+    	
+
+        // Cria um array de inteiros com os dados da imagem
+        Integer[] dados = {70, 2, 88, 15, 90, 30};
+
+        // Cria uma instância da classe OrdenacaoBolha
+        Quicksort<Integer> ordenacao = new Quicksort(dados);
+
+        // Ordena o array de inteiros
+        ordenacao.ordenar();
+
+        // Imprime o array ordenado
+        for (Integer dado : dados) {
+            System.out.print(dado + " ");
+        }
+        System.out.println();
     }
 }
