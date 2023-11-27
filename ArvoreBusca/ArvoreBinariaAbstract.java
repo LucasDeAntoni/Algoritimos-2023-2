@@ -1,5 +1,7 @@
 package ArvoreBusca;
 
+
+
 public abstract class ArvoreBinariaAbstract<T> {
 
 	private NoArvoreBinaria<T> raiz;
@@ -43,18 +45,18 @@ public abstract class ArvoreBinariaAbstract<T> {
 	}
 
 	public String ArvorePre(NoArvoreBinaria<T> no) {
-		if (no == null) {
+		if (no.getInfo() == null || no == null) {
 			return "";
 		}
 		String str = "<" + no.getInfo().toString();
 
 		if (no.getEsq() != null)
-			str += "<" + ArvorePre(no.getEsq()) + ">";
+			str +=  ArvorePre(no.getEsq()) ;
 		else
 			str += "<>";
 
 		if (no.getDir() != null)
-			str += "<" + ArvorePre(no.getDir()) + ">";
+			str +=  ArvorePre(no.getDir()) ;
 		else
 			str += "<>";
 
