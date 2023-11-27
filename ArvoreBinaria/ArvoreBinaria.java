@@ -37,25 +37,25 @@ public class ArvoreBinaria<T> {
     }
 
     public String ArvorePre(NoArvoreBinaria<T> no) {
-        if (no == null) {
-            return "";
-        }
-        String str = "<" + no.getInfo().toString();
+		if (no.getInfo() == null || no == null) {
+			return "";
+		}
+		String str = "<" + no.getInfo().toString();
 
-        if (no.getEsq() != null)
-            str += "<" + ArvorePre(no.getEsq()) + ">";
-        else
-            str += "<>";
+		if (no.getEsq() != null)
+			str +=  ArvorePre(no.getEsq()) ;
+		else
+			str += "<>";
 
-        if (no.getDir() != null)
-            str += "<" + ArvorePre(no.getDir()) + ">";
-        else
-            str += "<>";
+		if (no.getDir() != null)
+			str +=  ArvorePre(no.getDir()) ;
+		else
+			str += "<>";
 
-        return str + ">";
-    }
+		return str + ">";
+	}
 
-    // simetrica,em ordem
+    // simetrica
     public String emordem() {
         return emOrdemPrivate(raiz);
     }
@@ -84,7 +84,7 @@ public class ArvoreBinaria<T> {
 
         return str;
     }
-    //pos ordem
+
     public String posOrdem() {
         return posOrdemPrivate(raiz);
     }
