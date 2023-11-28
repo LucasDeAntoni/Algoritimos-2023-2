@@ -1,30 +1,19 @@
-package Mapa;
+package MapaDispersao;
 
+public class NoLista <T> {
+    private T info;
+    private NoLista<T> prox;
 
-
-public class NoLista<E> {
-	
-	private E info;
-	private NoLista<E> proximo;
-	
-	protected NoLista(E info) {
-		this.info = info;
-	}
-
-	public E getInfo() {
-		return info;
-	}
-
-	public void setInfo(E info) {
-		this.info = info;
-	}
-
-	public NoLista<E> getProximo() {
-		return proximo;
-	}
-
-	public void setProximo(NoLista<E> proximo) {
-		this.proximo = proximo;
-	}
+    public T getInfo() {
+        return info;
+    }
+    public void setInfo(T info) {
+        this.info = info;
+    }
+    public NoLista<T> getProx() {
+        return prox;
+    }
+    public void setProx(NoLista<T> prox) {
+        this.prox = prox;
+    }
 }
-

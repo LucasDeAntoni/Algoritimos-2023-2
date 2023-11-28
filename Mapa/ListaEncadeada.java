@@ -1,119 +1,136 @@
-package Mapa;
+package MapaDispersao;
+public class ListaEncadeada <T> {
+
+    private NoLista<T> primeiro;
+    private NoLista<T> ultimo;
+    
+
+    
+    public void inserir(T valor) {
+         NoLista<T> novo = new NoLista<T>();
+        novo.setInfo(valor);
+        if (this.EstaVazia()) {
+            primeiro = novo;
+            ultimo = novo;
+        } else {
+            novo.setProx(primeiro);
+            primeiro = novo;
+        }
+       
+    }
+
+   
+    public void retirar(T valor) {
+        NoLista<T> p = this.primeiro;
+        NoLista<T> anterior = null;
+        while (p != null && p.getInfo() != valor) {
+            anterior = p;
+            p = p.getProx();
+        }
+            if(p != null) {
+                if (anterior == null) {
+                   this.primeiro = p.getProx(); 
+                } else {
+              anterior.setProx(p.getProx());
+            }
+            if(this.ultimo == p) {
+                this.ultimo = anterior;
+            }
+           
+        }
+           
+        
+    }
+
+    
+    public NoLista<T> buscar(T valor) {
+        NoLista<T> p = primeiro;
+
+        while ( p != null) {
+            if(p.getInfo().equals(valor)) {
+                return p;
+            }
+            p = p.getProx();
+            
+        }
+        return null;
+
+    }
+
+    
+    public String ToString() {
+        NoLista<T> p = primeiro;
+        String str = "[";
+        while (p != null) {
+            if(p == ultimo){
+                str +=p.getInfo();
+                p = p.getProx();
+            } else{
+            str += p.getInfo() + ",";
+            p = p.getProx();
+            }
+        }
+        return str + "]";
+    }
+
+    public int ObterComprimento(){
+        NoLista<T> p = primeiro;
+        int comprimeento = 0;
+        while(p!= null){
+            p = p.getProx();
+            comprimeento++;
+        }
+        return comprimeento;
+    }
+
+    
+    
+
+    
+    public boolean EstaVazia() {
+        if (primeiro == null) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    
+    public Object ObterNo(int pos) {
+        if(pos<0 || pos >= ObterComprimento()) {
+            throw new IndexOutOfBoundsException("Pos = " + pos);
+        }
+        NoLista<T> p = this.primeiro;
+        for (int i = 0; i < pos; i++) {
+           p = p.getProx(); 
+        }
+        return p.getInfo();
+
+    }
+
+    public NoLista<T> getPrimeiro(){
+        return primeiro;
+    }
+
+    public static void main(String[] args) {
+    ListaEncadeada<Integer> lista = new ListaEncadeada<>();
+
+    lista.inserir(5);
+    lista.inserir(10);
+    lista.inserir(15);
+    lista.inserir(20);
 
 
-public class ListaEncadeada<E> {
-	
-	private NoLista<E> primeiro;
-	
-	public NoLista<E> getPrimeiro() {
-		return primeiro;
-	}
-	
-	public NoLista<E> getUltimo() {
-		if (primeiro == null) {
-			return null;
-		}
-		NoLista<E> no = primeiro;
-		NoLista<E> proximo = primeiro.getProximo();
-		while (proximo != null) {
-			no = proximo;
-			proximo = proximo.getProximo();
-		}
-		return no;
-	}
 
-	public void inserir(E info) {
-		NoLista<E> primeiroAux = primeiro;
-		primeiro = new NoLista<E>(info);
-		primeiro.setProximo(primeiroAux);
-	}
-	
-	public boolean estaVazia() {
-		return primeiro == null;
-	}
-	
-	public NoLista<E> buscar(E info) {
-		NoLista<E> no = primeiro;
-		while(no != null) {
-			if (no.getInfo().equals(info)) {
-				return no;
-			}
-			no = no.getProximo();
-		}
-		return null;
-	}
-	
-	public void retirar(E info) {
-		if (primeiro == null) {
-			return;
-		}
-		if (primeiro.getInfo().equals(info)) {
-			primeiro = primeiro.getProximo();
-			return;
-		}
-		NoLista<E> no = primeiro;
-		NoLista<E> proximo = primeiro.getProximo();
-		while (proximo != null) {
-			if (proximo.getInfo().equals(info)) {
-				no.setProximo(proximo.getProximo());
-				return;
-			}
-			no = proximo;
-			proximo = proximo.getProximo();
-		}
-		
-	}
-	
-	public int obterComprimento() {
-		NoLista<E> no = primeiro;
-		int q = 0;
-		while(no != null) {
-			q++;
-			no = no.getProximo();
-		}
-		return q;
-	}
-	
-	public NoLista<E> obterNo(int idx) {
-		if (idx < 0) {
-			throw new IndexOutOfBoundsException(idx);
-		}
-		NoLista<E> no = primeiro;
-		int pos = idx;
-		int i = 0;
-		while (i < idx && no != null) {
-			no = no.getProximo();
-			i++;
-		}
-		
-		if (no == null) {
-			throw new IndexOutOfBoundsException(pos);
-		}
-		return no;
-	}
-	
-	public void liberar() {
-		primeiro = null;
-	}
-	
-	public void exibir() {
-		System.out.println(toString());
-	}
-	
-	@Override
-	public String toString() {
-		if (primeiro == null) {
-			return "[]";
-		}
-		String string = "[";
-		NoLista<E> no = primeiro;
-		string += no.getInfo();
-		no = no.getProximo();
-		while (no != null) {
-			string += ", " + no.getInfo();
-			no = no.getProximo();
-		}
-		return string += "]";
-	}
-}
+    System.out.println(lista.EstaVazia());
+    //System.out.println(lista.getPrimeiro());
+        System.out.println(lista.ToString());
+
+    System.out.println(lista.ObterComprimento());
+       // System.out.println(lista.ObterNo(10));
+
+    
+    }
+    }
 
