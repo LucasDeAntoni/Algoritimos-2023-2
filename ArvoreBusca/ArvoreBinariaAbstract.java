@@ -30,13 +30,21 @@ public abstract class ArvoreBinariaAbstract<T> {
 	}
 
 	private boolean pertence(NoArvoreBinaria<T> no, T info) {
-
+		if(raiz==null){
+			return false;
+		} else if(buscar(info)!=null){
+			return true;
+		} else{
+			return false;
+		}
+		
+		/* 
 		if (raiz == null) {
 			return false;
 		} else {
 			return (no.getInfo() == info) || pertence(no.getEsq(), info) || pertence(no.getDir(), info);
 		}
-
+*/
 	}
 
 	// pre-ordem
