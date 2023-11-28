@@ -1,13 +1,12 @@
-package Busca;
+package Busca2;
 
 public abstract class ListaAbstract<T> {
-
     protected int tamanho;
     protected T[] info;
 
     public ListaAbstract() {
 
-        info = (T[]) new Object[0];
+        info = (T[]) new Object[10];
         tamanho = 0;
 
     }
@@ -132,4 +131,6 @@ public abstract class ListaAbstract<T> {
      * 
      */
 
+
 }
+

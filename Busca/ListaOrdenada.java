@@ -1,15 +1,13 @@
-package Busca;
+package Busca2;
 
 public class ListaOrdenada<T extends Comparable<T>> extends ListaAbstract<T> {
 
-   Object[] infoLocal = getInfo();
+    Object[] infoLocal = getInfo();
 
     public ListaOrdenada() {
-        infoLocal =  new Object[0];
+        infoLocal = new Object[0];
     }
-
     @Override
-
     public void inserir(T valor) {
 
         if (tamanho == infoLocal.length) {
@@ -24,7 +22,6 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaAbstract<T> {
 
         while (i < tamanho && valor.compareTo((T) infoLocal[i]) > 0) {
             i++;
-
         }
 
         for (int j = tamanho; j > i; j--) {
@@ -41,26 +38,23 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaAbstract<T> {
         int n = tamanho;
         int inicio = 0;
         int fim = n - 1;
-        
         while (inicio <= fim) {
-            int meio = (inicio +fim)/ 2;
-            if (valor.compareTo((T)infoLocal[meio]) < 0) {
+            int meio = (inicio + fim) / 2;
+            if (valor.compareTo((T)infoLocal[meio]) < 0) { // redefine pos final
                 fim = meio - 1;
+            } else if (valor.compareTo((T)infoLocal[meio]) > 0) { // redefine pos inicial
+                inicio = meio + 1;
             } else {
-                if (valor.compareTo((T)infoLocal[meio]) > 0) {
-                    inicio = meio + 1;
-                } else {
-                    return meio;
-                }
-
+                return meio; // achou :D
             }
         }
         return -1;
     }
 
+
     public static void main(String[] args) {
         ListaOrdenada<Integer> lista = new ListaOrdenada<>();
-
+    lista.inserir(100);
        lista.inserir(0);
        lista.inserir(10);
        lista.inserir(20);
@@ -71,7 +65,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaAbstract<T> {
         lista.inserir(70);
         lista.inserir(80);
         lista.inserir(90);
-        lista.inserir(100);
+       
       
 
         System.out.println(lista.toSTring());
