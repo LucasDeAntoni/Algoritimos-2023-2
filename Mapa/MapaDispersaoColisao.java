@@ -8,7 +8,7 @@ public class MapaDispersaoColisao<T> {
     private int tamanho;
     boolean rehash = false;
     private int quantidadeElementos;
-    private double cargaMaxima = 0.75;
+    private double fatorDeCarga = 0.75;
 
     public MapaDispersaoColisao(int tamanho) {
         this.tamanho = tamanho;
@@ -56,7 +56,7 @@ public class MapaDispersaoColisao<T> {
         quantidadeElementos++;
 
         double fatorDeCarga = (double) quantidadeElementos / tamanho;
-        if (fatorDeCarga > cargaMaxima) {
+        if (fatorDeCarga > fatorDeCarga) {
             rehash();
         }
     }
